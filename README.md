@@ -71,13 +71,9 @@ Todo se guarda en el navegador con estas claves de `localStorage`:
 
 Para volver al estado inicial, borra los datos del sitio desde las herramientas de desarrollador del navegador.
 
-## Créditos de imágenes
-
-Las fotografías son imágenes de referencia de [Unsplash](https://unsplash.com/license), obtenidas a través de [Lorem Picsum](https://picsum.photos/), y se usan solo con fines académicos.
-
 ## Créditos de las imágenes
 
-Fotografías reales obtenidas de [Wikimedia Commons](https://commons.wikimedia.org/) con licencias libres:
+Fotografías obtenidas de [Wikimedia Commons](https://commons.wikimedia.org/) con licencias libres:
 
 | Archivo | Autor | Licencia | Fuente |
 |---|---|---|---|

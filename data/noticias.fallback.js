@@ -36,8 +36,8 @@ window.PULSO_DATA = {
       "destacada": false,
       "resumen": "El Ministerio de Tecnologías de la Información confirmó conexión de fibra para 300 sedes educativas rurales de seis departamentos.",
       "imagen": "assets/img/fibra-optica.jpg",
-      "imagenAlt": "Estudiantes de la sede rural El Carmen durante una prueba de conexión",
-      "pieFoto": "Estudiantes de la sede rural El Carmen, en Boyacá, durante una prueba de conexión. Imagen de referencia: Unsplash.",
+      "imagenAlt": "Cable de fibra óptica enrollado en una zanja durante su instalación",
+      "pieFoto": "Instalación de cable de fibra óptica. Foto: Rubin Observatory/NSF/AURA, CC BY 4.0, vía Wikimedia Commons.",
       "cuerpo": [
         {
           "tipo": "p",
@@ -81,8 +81,8 @@ window.PULSO_DATA = {
       "destacada": true,
       "resumen": "La convocatoria cubre matrícula y un auxilio de transporte para estudiantes de estratos 1, 2 y 3. Las inscripciones cierran el 20 de octubre.",
       "imagen": "assets/img/becas-energias.jpg",
-      "imagenAlt": "Estudiantes en un taller técnico",
-      "pieFoto": "Las becas cubren programas técnicos y tecnológicos de dos años. Imagen de referencia: Unsplash.",
+      "imagenAlt": "Paneles solares a la espera de ser instalados",
+      "pieFoto": "Paneles solares a la espera de instalación. Foto: ArnoldReinhold, CC BY-SA 4.0, vía Wikimedia Commons.",
       "cuerpo": [
         {
           "tipo": "p",
@@ -117,8 +117,8 @@ window.PULSO_DATA = {
       "destacada": false,
       "resumen": "Electrodomésticos y calzado lideraron el aumento, mientras que las ventas de vehículos se mantuvieron estables frente a julio.",
       "imagen": "assets/img/comercio-minorista.jpg",
-      "imagenAlt": "Vitrina de un almacén de barrio",
-      "pieFoto": "El comercio de barrio reportó el mejor agosto de los últimos cuatro años. Imagen de referencia: Unsplash.",
+      "imagenAlt": "Tienda de artesanías con productos de colores",
+      "pieFoto": "Tienda de artesanías. Foto: C.puello, CC BY-SA 3.0, vía Wikimedia Commons.",
       "cuerpo": [
         {
           "tipo": "p",
@@ -145,8 +145,8 @@ window.PULSO_DATA = {
       "destacada": true,
       "resumen": "La aplicación usa sensores de bajo costo instalados en 40 colegios y publica alertas cuando el material particulado supera los límites.",
       "imagen": "assets/img/app-calidad-aire.jpg",
-      "imagenAlt": "Estudiante caminando cerca de un parque",
-      "pieFoto": "Los sensores se instalaron en patios y terrazas de 40 colegios públicos. Imagen de referencia: Unsplash.",
+      "imagenAlt": "Sensor de calidad del aire instalado junto a una ventana",
+      "pieFoto": "Sensor de calidad del aire. Foto: Intel Free Press, CC BY-SA 2.0, vía Wikimedia Commons.",
       "cuerpo": [
         {
           "tipo": "p",
@@ -178,8 +178,8 @@ window.PULSO_DATA = {
       "destacada": true,
       "resumen": "Cartagena y Santa Marta concentran la mayor demanda, impulsada por nuevas rutas aéreas y paquetes para familias.",
       "imagen": "assets/img/ocupacion-hotelera.jpg",
-      "imagenAlt": "Persona sentada en una banca frente a la playa",
-      "pieFoto": "La demanda se concentró en planes familiares de cuatro noches. Imagen de referencia: Unsplash.",
+      "imagenAlt": "Playa de Bocagrande con edificios al fondo, en Cartagena",
+      "pieFoto": "Playa de Bocagrande, Cartagena. Foto: Bernard Gagnon, CC BY-SA 4.0, vía Wikimedia Commons.",
       "cuerpo": [
         {
           "tipo": "p",
@@ -206,8 +206,8 @@ window.PULSO_DATA = {
       "destacada": false,
       "resumen": "Los operadores deberán cubrir primero hospitales, terminales de transporte y plazas principales, según los compromisos de la subasta.",
       "imagen": "assets/img/red-5g.jpg",
-      "imagenAlt": "Manos sobre el teclado de un piano",
-      "pieFoto": "El despliegue comenzará por las cabeceras municipales. Imagen de referencia: Unsplash.",
+      "imagenAlt": "Antenas de telefonía 5G en lo alto de una torre",
+      "pieFoto": "Antenas de red 5G. Foto: Tony Webster, CC BY 2.0, vía Wikimedia Commons.",
       "cuerpo": [
         {
           "tipo": "p",
@@ -234,8 +234,8 @@ window.PULSO_DATA = {
       "destacada": false,
       "resumen": "Más de 3.000 libros y guías de clase quedan disponibles en servidores locales para sedes sin acceso estable a internet.",
       "imagen": "assets/img/bibliotecas-digitales.jpg",
-      "imagenAlt": "Calle de un pueblo con edificios de ladrillo",
-      "pieFoto": "Cada sede recibió un servidor local y 20 tabletas. Imagen de referencia: Unsplash.",
+      "imagenAlt": "Estudiantes trabajando con tabletas en un aula",
+      "pieFoto": "Clase con tabletas. Foto: Ronja Aigner y Michelle Kohlmeier, CC0, vía Wikimedia Commons.",
       "cuerpo": [
         {
           "tipo": "p",
@@ -262,8 +262,8 @@ window.PULSO_DATA = {
       "destacada": false,
       "resumen": "Los puntos de venta abrirán de 6:00 a. m. a 4:00 p. m. en 18 parques de la ciudad durante los sábados y domingos.",
       "imagen": "assets/img/mercados-campesinos.jpg",
-      "imagenAlt": "Edificios altos al atardecer",
-      "pieFoto": "Más de 300 productores participan en los mercados. Imagen de referencia: Unsplash.",
+      "imagenAlt": "Edificio de la plaza de mercado de Girardot",
+      "pieFoto": "Plaza de mercado de Girardot. Foto: LorenaRoblesH, CC BY-SA 3.0, vía Wikimedia Commons.",
       "cuerpo": [
         {
           "tipo": "p",
@@ -290,8 +290,8 @@ window.PULSO_DATA = {
       "destacada": false,
       "resumen": "Desde octubre, los usuarios podrán pagar el pasaje con la app de su banco sin necesidad de recargar la tarjeta física.",
       "imagen": "assets/img/pago-qr.jpg",
-      "imagenAlt": "Persona sumergida en agua oscura",
-      "pieFoto": "El pago con QR estará disponible en todas las estaciones desde octubre. Imagen de referencia: Unsplash.",
+      "imagenAlt": "Comprador escaneando un código con su celular en un puesto de mercado",
+      "pieFoto": "Pago con el celular en un puesto de mercado. Foto: PattayaPatrol, CC BY-SA 4.0, vía Wikimedia Commons.",
       "cuerpo": [
         {
           "tipo": "p",
@@ -318,8 +318,8 @@ window.PULSO_DATA = {
       "destacada": false,
       "resumen": "Parques Nacionales habilitó de nuevo los senderos con aforo controlado y reserva previa obligatoria en línea.",
       "imagen": "assets/img/rutas-senderismo.jpg",
-      "imagenAlt": "Ventanas de madera en un muro antiguo",
-      "pieFoto": "Los senderos exigen reserva previa y guía certificado. Imagen de referencia: Unsplash.",
+      "imagenAlt": "Caminantes en un sendero del Páramo de Guerrero",
+      "pieFoto": "Senderismo en el Páramo de Guerrero. Foto: Jedidiahhorne, CC BY-SA 4.0, vía Wikimedia Commons.",
       "cuerpo": [
         {
           "tipo": "p",
@@ -346,8 +346,8 @@ window.PULSO_DATA = {
       "destacada": false,
       "resumen": "La Secretaría de Educación confirmó que el receso escolar pasará de tres a cuatro semanas a partir de 2027.",
       "imagen": "assets/img/calendario-academico.jpg",
-      "imagenAlt": "Taza de café sobre una manta",
-      "pieFoto": "El cambio aplica para colegios públicos de calendario A. Imagen de referencia: Unsplash.",
+      "imagenAlt": "Estudiantes de secundaria trabajando en un aula con computadores",
+      "pieFoto": "Estudiantes en un aula de secundaria. Foto: Keely Harrison, CC BY 4.0, vía Wikimedia Commons.",
       "cuerpo": [
         {
           "tipo": "p",
@@ -374,8 +374,8 @@ window.PULSO_DATA = {
       "destacada": false,
       "resumen": "Las tarifas promedio entre ciudades principales cayeron un 14 % en el último trimestre, según la Aerocivil.",
       "imagen": "assets/img/vuelos-nacionales.jpg",
-      "imagenAlt": "Playa con el mar al fondo",
-      "pieFoto": "Las nuevas aerolíneas operan rutas entre ciudades principales. Imagen de referencia: Unsplash.",
+      "imagenAlt": "Avión comercial estacionado en la plataforma de un aeropuerto",
+      "pieFoto": "Avión comercial en plataforma. Foto: Wilfredor, CC0, vía Wikimedia Commons.",
       "cuerpo": [
         {
           "tipo": "p",
