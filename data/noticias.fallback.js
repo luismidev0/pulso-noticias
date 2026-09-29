@@ -1,0 +1,391 @@
+/**
+ * noticias.fallback.js
+ * Copia del catálogo data/noticias.json para cuando la página se abre
+ * directamente desde el disco (file://). En ese caso el navegador bloquea
+ * fetch() por seguridad y store.js usa estos datos como respaldo.
+ * Si se modifica noticias.json, se debe actualizar también este archivo.
+ */
+window.PULSO_DATA = {
+  "categorias": [
+    {
+      "id": "educacion",
+      "nombre": "Educación"
+    },
+    {
+      "id": "tecnologia",
+      "nombre": "Tecnología"
+    },
+    {
+      "id": "turismo",
+      "nombre": "Turismo"
+    },
+    {
+      "id": "comercio",
+      "nombre": "Comercio"
+    }
+  ],
+  "noticias": [
+    {
+      "id": "fibra-optica-colegios-rurales",
+      "titulo": "La red pública de fibra óptica llegará a 300 colegios rurales en 2027",
+      "categoria": "tecnologia",
+      "fecha": "2026-09-27",
+      "autor": "Laura Méndez Ruiz",
+      "lectura": 5,
+      "lecturas": 4120,
+      "destacada": false,
+      "resumen": "El Ministerio de Tecnologías de la Información confirmó conexión de fibra para 300 sedes educativas rurales de seis departamentos.",
+      "imagen": "assets/img/fibra-optica.jpg",
+      "imagenAlt": "Estudiantes de la sede rural El Carmen durante una prueba de conexión",
+      "pieFoto": "Estudiantes de la sede rural El Carmen, en Boyacá, durante una prueba de conexión. Imagen de referencia: Unsplash.",
+      "cuerpo": [
+        {
+          "tipo": "p",
+          "texto": "El Ministerio de Tecnologías de la Información confirmó que 300 sedes educativas rurales de seis departamentos tendrán conexión de fibra óptica antes de terminar 2027, con una inversión estimada de 184.000 millones de pesos."
+        },
+        {
+          "tipo": "p",
+          "texto": "El proyecto, anunciado este lunes en Bogotá, prioriza a los municipios con menor cobertura de internet fijo, donde hoy menos de dos de cada diez hogares cuentan con una conexión estable. La primera fase comenzará en enero en Boyacá, Cauca y Nariño."
+        },
+        {
+          "tipo": "h2",
+          "texto": "Qué cambia para estudiantes y docentes"
+        },
+        {
+          "tipo": "p",
+          "texto": "Cada colegio recibirá un enlace simétrico de 200 megas, equipos de red y una sala con 25 portátiles. Según el cronograma, las instituciones también podrán abrir la conexión por fuera de la jornada escolar como punto de acceso comunitario."
+        },
+        {
+          "tipo": "cita",
+          "texto": "La conectividad no es un lujo para las escuelas rurales: es la condición mínima para que enseñen con las mismas herramientas que las urbanas.",
+          "autor": "Andrea Salcedo, directora de Conectividad Educativa"
+        },
+        {
+          "tipo": "p",
+          "texto": "Los docentes participarán en un programa de formación de 60 horas en herramientas digitales, diseñado junto con tres universidades públicas. La meta es que al menos 4.500 profesores completen el curso durante el primer año."
+        },
+        {
+          "tipo": "p",
+          "texto": "Las asociaciones de padres de familia celebraron el anuncio, aunque pidieron garantizar el mantenimiento de los equipos. En convocatorias anteriores, varias sedes perdieron la conexión meses después de la instalación por falta de soporte técnico."
+        }
+      ]
+    },
+    {
+      "id": "becas-energias-renovables",
+      "titulo": "Abren 12.000 becas para carreras técnicas en energías renovables",
+      "categoria": "educacion",
+      "fecha": "2026-09-26",
+      "autor": "Camilo Restrepo Gil",
+      "lectura": 4,
+      "lecturas": 5310,
+      "destacada": true,
+      "resumen": "La convocatoria cubre matrícula y un auxilio de transporte para estudiantes de estratos 1, 2 y 3. Las inscripciones cierran el 20 de octubre.",
+      "imagen": "assets/img/becas-energias.jpg",
+      "imagenAlt": "Estudiantes en un taller técnico",
+      "pieFoto": "Las becas cubren programas técnicos y tecnológicos de dos años. Imagen de referencia: Unsplash.",
+      "cuerpo": [
+        {
+          "tipo": "p",
+          "texto": "El Gobierno nacional abrió una convocatoria de 12.000 becas para programas técnicos y tecnológicos relacionados con energías renovables, como instalación de paneles solares, mantenimiento de parques eólicos y eficiencia energética."
+        },
+        {
+          "tipo": "p",
+          "texto": "El beneficio cubre el 100 % de la matrícula durante dos años y un auxilio mensual de transporte. Pueden aplicar bachilleres de estratos 1, 2 y 3 menores de 28 años que no tengan un título de educación superior."
+        },
+        {
+          "tipo": "h2",
+          "texto": "Cómo inscribirse"
+        },
+        {
+          "tipo": "p",
+          "texto": "La inscripción se hace en línea hasta el 20 de octubre. Los aspirantes deben adjuntar el diploma de bachiller, el certificado de estrato y la prueba Saber 11. La lista de beneficiarios se publicará la primera semana de diciembre."
+        },
+        {
+          "tipo": "p",
+          "texto": "Las clases comenzarán en febrero en 34 instituciones de 18 departamentos, con prácticas en empresas del sector energético."
+        }
+      ]
+    },
+    {
+      "id": "ventas-comercio-minorista-agosto",
+      "titulo": "Las ventas del comercio minorista crecen un 6,2 % en agosto",
+      "categoria": "comercio",
+      "fecha": "2026-09-25",
+      "autor": "Natalia Ospina Vélez",
+      "lectura": 3,
+      "lecturas": 2890,
+      "destacada": false,
+      "resumen": "Electrodomésticos y calzado lideraron el aumento, mientras que las ventas de vehículos se mantuvieron estables frente a julio.",
+      "imagen": "assets/img/comercio-minorista.jpg",
+      "imagenAlt": "Vitrina de un almacén de barrio",
+      "pieFoto": "El comercio de barrio reportó el mejor agosto de los últimos cuatro años. Imagen de referencia: Unsplash.",
+      "cuerpo": [
+        {
+          "tipo": "p",
+          "texto": "Las ventas del comercio minorista crecieron un 6,2 % en agosto frente al mismo mes del año anterior, según el reporte mensual de la oficina nacional de estadística."
+        },
+        {
+          "tipo": "p",
+          "texto": "Los electrodomésticos, con un alza del 11 %, y el calzado, con un 9 %, explicaron buena parte del resultado. La venta de vehículos, en cambio, se mantuvo prácticamente igual que en julio."
+        },
+        {
+          "tipo": "p",
+          "texto": "Los gremios atribuyen el aumento a la temporada de regreso a clases y a las promociones de mitad de año, y esperan que la tendencia se mantenga hasta diciembre."
+        }
+      ]
+    },
+    {
+      "id": "app-calidad-del-aire",
+      "titulo": "Estudiantes crean una app que mide la calidad del aire en tiempo real",
+      "categoria": "tecnologia",
+      "fecha": "2026-09-24",
+      "autor": "Laura Méndez Ruiz",
+      "lectura": 4,
+      "lecturas": 6020,
+      "destacada": true,
+      "resumen": "La aplicación usa sensores de bajo costo instalados en 40 colegios y publica alertas cuando el material particulado supera los límites.",
+      "imagen": "assets/img/app-calidad-aire.jpg",
+      "imagenAlt": "Estudiante caminando cerca de un parque",
+      "pieFoto": "Los sensores se instalaron en patios y terrazas de 40 colegios públicos. Imagen de referencia: Unsplash.",
+      "cuerpo": [
+        {
+          "tipo": "p",
+          "texto": "Un grupo de estudiantes de ingeniería desarrolló una aplicación gratuita que muestra la calidad del aire barrio por barrio, a partir de sensores de bajo costo instalados en 40 colegios públicos."
+        },
+        {
+          "tipo": "p",
+          "texto": "Cada sensor mide el material particulado cada cinco minutos y envía los datos a un servidor que genera un mapa actualizado. Cuando los niveles superan los límites recomendados, la app envía una alerta a los usuarios cercanos."
+        },
+        {
+          "tipo": "cita",
+          "texto": "Queríamos que cualquier persona supiera si es un buen momento para salir a correr o si es mejor esperar.",
+          "autor": "Mariana Torres, estudiante de octavo semestre"
+        },
+        {
+          "tipo": "p",
+          "texto": "El proyecto ganó una convocatoria de innovación de la alcaldía y ampliará la red a 100 sedes el próximo año."
+        }
+      ]
+    },
+    {
+      "id": "ocupacion-hotelera-costa",
+      "titulo": "La ocupación hotelera en la costa supera el 85 % en temporada de receso",
+      "categoria": "turismo",
+      "fecha": "2026-09-22",
+      "autor": "Sebastián Rincón Mora",
+      "lectura": 3,
+      "lecturas": 3740,
+      "destacada": true,
+      "resumen": "Cartagena y Santa Marta concentran la mayor demanda, impulsada por nuevas rutas aéreas y paquetes para familias.",
+      "imagen": "assets/img/ocupacion-hotelera.jpg",
+      "imagenAlt": "Persona sentada en una banca frente a la playa",
+      "pieFoto": "La demanda se concentró en planes familiares de cuatro noches. Imagen de referencia: Unsplash.",
+      "cuerpo": [
+        {
+          "tipo": "p",
+          "texto": "La ocupación hotelera en la región Caribe superó el 85 % durante la semana de receso escolar, la cifra más alta para esta temporada desde que se lleva registro."
+        },
+        {
+          "tipo": "p",
+          "texto": "Cartagena y Santa Marta concentraron la mayor demanda, seguidas por San Andrés y Riohacha. Los gremios del sector atribuyen el resultado a las nuevas rutas aéreas y a los paquetes con descuento para familias."
+        },
+        {
+          "tipo": "p",
+          "texto": "Las autoridades recomendaron reservar con anticipación para la temporada de fin de año, cuando se espera una ocupación aún mayor."
+        }
+      ]
+    },
+    {
+      "id": "red-5g-municipios-intermedios",
+      "titulo": "La red 5G llegará a 40 municipios intermedios antes de fin de año",
+      "categoria": "tecnologia",
+      "fecha": "2026-09-18",
+      "autor": "Julián Cárdenas Pérez",
+      "lectura": 3,
+      "lecturas": 2470,
+      "destacada": false,
+      "resumen": "Los operadores deberán cubrir primero hospitales, terminales de transporte y plazas principales, según los compromisos de la subasta.",
+      "imagen": "assets/img/red-5g.jpg",
+      "imagenAlt": "Manos sobre el teclado de un piano",
+      "pieFoto": "El despliegue comenzará por las cabeceras municipales. Imagen de referencia: Unsplash.",
+      "cuerpo": [
+        {
+          "tipo": "p",
+          "texto": "Cuarenta municipios intermedios tendrán cobertura 5G antes de terminar el año, como parte de las obligaciones que asumieron los operadores en la subasta de espectro."
+        },
+        {
+          "tipo": "p",
+          "texto": "La prioridad serán los hospitales, las terminales de transporte y las plazas principales. En una segunda etapa, prevista para 2027, la red llegará a zonas industriales y universidades."
+        },
+        {
+          "tipo": "p",
+          "texto": "Los usuarios necesitarán un equipo compatible para aprovechar la nueva red; los planes actuales seguirán funcionando sin cambios."
+        }
+      ]
+    },
+    {
+      "id": "bibliotecas-digitales-sin-conexion",
+      "titulo": "Colegios rurales estrenan bibliotecas digitales que funcionan sin conexión",
+      "categoria": "educacion",
+      "fecha": "2026-09-15",
+      "autor": "Camilo Restrepo Gil",
+      "lectura": 4,
+      "lecturas": 1980,
+      "destacada": false,
+      "resumen": "Más de 3.000 libros y guías de clase quedan disponibles en servidores locales para sedes sin acceso estable a internet.",
+      "imagen": "assets/img/bibliotecas-digitales.jpg",
+      "imagenAlt": "Calle de un pueblo con edificios de ladrillo",
+      "pieFoto": "Cada sede recibió un servidor local y 20 tabletas. Imagen de referencia: Unsplash.",
+      "cuerpo": [
+        {
+          "tipo": "p",
+          "texto": "Ciento veinte colegios rurales recibieron bibliotecas digitales que funcionan sin conexión a internet, con más de 3.000 libros, guías de clase y videos educativos."
+        },
+        {
+          "tipo": "p",
+          "texto": "El contenido se almacena en un servidor local al que los estudiantes se conectan por wifi desde tabletas o computadores de la sede. Cuando hay conexión, el sistema descarga actualizaciones de forma automática."
+        },
+        {
+          "tipo": "p",
+          "texto": "Los docentes podrán cargar sus propios materiales y compartirlos con otras sedes del mismo municipio."
+        }
+      ]
+    },
+    {
+      "id": "mercados-campesinos-horario",
+      "titulo": "Los mercados campesinos amplían su horario los fines de semana",
+      "categoria": "comercio",
+      "fecha": "2026-09-12",
+      "autor": "Natalia Ospina Vélez",
+      "lectura": 2,
+      "lecturas": 1650,
+      "destacada": false,
+      "resumen": "Los puntos de venta abrirán de 6:00 a. m. a 4:00 p. m. en 18 parques de la ciudad durante los sábados y domingos.",
+      "imagen": "assets/img/mercados-campesinos.jpg",
+      "imagenAlt": "Edificios altos al atardecer",
+      "pieFoto": "Más de 300 productores participan en los mercados. Imagen de referencia: Unsplash.",
+      "cuerpo": [
+        {
+          "tipo": "p",
+          "texto": "Los mercados campesinos ampliarán su horario los sábados y domingos, de 6:00 a. m. a 4:00 p. m., en 18 parques de la ciudad."
+        },
+        {
+          "tipo": "p",
+          "texto": "La medida busca que más familias puedan comprar directamente a los productores, sin intermediarios. Se aceptarán pagos en efectivo y con código QR."
+        },
+        {
+          "tipo": "p",
+          "texto": "La lista de parques y productores participantes está disponible en la página de la Secretaría de Desarrollo Económico."
+        }
+      ]
+    },
+    {
+      "id": "pago-qr-transporte-publico",
+      "titulo": "Así funciona el nuevo pago con código QR en el transporte público",
+      "categoria": "tecnologia",
+      "fecha": "2026-09-11",
+      "autor": "Julián Cárdenas Pérez",
+      "lectura": 3,
+      "lecturas": 7210,
+      "destacada": false,
+      "resumen": "Desde octubre, los usuarios podrán pagar el pasaje con la app de su banco sin necesidad de recargar la tarjeta física.",
+      "imagen": "assets/img/pago-qr.jpg",
+      "imagenAlt": "Persona sumergida en agua oscura",
+      "pieFoto": "El pago con QR estará disponible en todas las estaciones desde octubre. Imagen de referencia: Unsplash.",
+      "cuerpo": [
+        {
+          "tipo": "p",
+          "texto": "A partir de octubre, los usuarios del transporte público podrán pagar el pasaje escaneando un código QR con la aplicación de su banco, sin necesidad de recargar la tarjeta física."
+        },
+        {
+          "tipo": "p",
+          "texto": "El sistema genera un código válido por 60 segundos que se presenta en el torniquete. El valor del pasaje es el mismo y se mantienen los transbordos gratuitos."
+        },
+        {
+          "tipo": "p",
+          "texto": "La tarjeta física seguirá funcionando. Los usuarios con tarifa diferencial deberán seguir usándola mientras se habilita esa opción en el QR."
+        }
+      ]
+    },
+    {
+      "id": "rutas-senderismo-reabren",
+      "titulo": "Cinco rutas de senderismo que reabren tras la temporada de lluvias",
+      "categoria": "turismo",
+      "fecha": "2026-09-09",
+      "autor": "Sebastián Rincón Mora",
+      "lectura": 5,
+      "lecturas": 3310,
+      "destacada": false,
+      "resumen": "Parques Nacionales habilitó de nuevo los senderos con aforo controlado y reserva previa obligatoria en línea.",
+      "imagen": "assets/img/rutas-senderismo.jpg",
+      "imagenAlt": "Ventanas de madera en un muro antiguo",
+      "pieFoto": "Los senderos exigen reserva previa y guía certificado. Imagen de referencia: Unsplash.",
+      "cuerpo": [
+        {
+          "tipo": "p",
+          "texto": "Parques Nacionales reabrió cinco rutas de senderismo que estuvieron cerradas durante la temporada de lluvias, con aforo controlado y reserva previa obligatoria."
+        },
+        {
+          "tipo": "p",
+          "texto": "Las rutas habilitadas tienen entre 4 y 14 kilómetros y exigen acompañamiento de un guía certificado. Se recomienda llevar ropa impermeable y calzado con buen agarre."
+        },
+        {
+          "tipo": "p",
+          "texto": "Las reservas se hacen en línea con al menos 48 horas de anticipación."
+        }
+      ]
+    },
+    {
+      "id": "calendario-academico-vacaciones",
+      "titulo": "Nuevo calendario académico: así quedan las vacaciones de mitad de año",
+      "categoria": "educacion",
+      "fecha": "2026-09-03",
+      "autor": "Camilo Restrepo Gil",
+      "lectura": 3,
+      "lecturas": 4480,
+      "destacada": false,
+      "resumen": "La Secretaría de Educación confirmó que el receso escolar pasará de tres a cuatro semanas a partir de 2027.",
+      "imagen": "assets/img/calendario-academico.jpg",
+      "imagenAlt": "Taza de café sobre una manta",
+      "pieFoto": "El cambio aplica para colegios públicos de calendario A. Imagen de referencia: Unsplash.",
+      "cuerpo": [
+        {
+          "tipo": "p",
+          "texto": "La Secretaría de Educación confirmó que, desde 2027, las vacaciones de mitad de año en los colegios públicos pasarán de tres a cuatro semanas."
+        },
+        {
+          "tipo": "p",
+          "texto": "Para compensar, el año escolar comenzará una semana antes, en la última semana de enero. El total de semanas de clase se mantiene en 40."
+        },
+        {
+          "tipo": "p",
+          "texto": "Los colegios privados podrán decidir si adoptan el mismo calendario."
+        }
+      ]
+    },
+    {
+      "id": "vuelos-nacionales-bajan-precio",
+      "titulo": "Los vuelos nacionales bajan de precio con la llegada de dos aerolíneas",
+      "categoria": "turismo",
+      "fecha": "2026-09-01",
+      "autor": "Sebastián Rincón Mora",
+      "lectura": 3,
+      "lecturas": 5160,
+      "destacada": false,
+      "resumen": "Las tarifas promedio entre ciudades principales cayeron un 14 % en el último trimestre, según la Aerocivil.",
+      "imagen": "assets/img/vuelos-nacionales.jpg",
+      "imagenAlt": "Playa con el mar al fondo",
+      "pieFoto": "Las nuevas aerolíneas operan rutas entre ciudades principales. Imagen de referencia: Unsplash.",
+      "cuerpo": [
+        {
+          "tipo": "p",
+          "texto": "Las tarifas promedio de los vuelos nacionales entre ciudades principales cayeron un 14 % en el último trimestre, tras la llegada de dos nuevas aerolíneas de bajo costo."
+        },
+        {
+          "tipo": "p",
+          "texto": "Las rutas con mayor reducción fueron Bogotá–Cartagena y Medellín–Santa Marta. La autoridad aeronáutica recomendó comparar tarifas y revisar los cobros por equipaje antes de comprar."
+        }
+      ]
+    }
+  ]
+};

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inicio · Pulso</title>
+  <meta name="description" content="Pulso reúne la actualidad local organizada por categoría: educación, tecnología, turismo y comercio.">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="data/noticias.fallback.js" defer></script>
+  <script src="js/icons.js" defer></script>
+  <script src="js/store.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/pages/home.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===== Encabezado común a todas las páginas ===== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html" aria-label="Pulso, ir al inicio">Pulso<span class="logo__dot">.</span></a>
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-principal"></button>
+      <nav class="header__nav" id="menu-principal" aria-label="Navegación principal">
+        <ul class="nav">
+        <li class="nav__item"><a class="nav__link nav__link--active" href="index.html" aria-current="page">Inicio</a></li>
+        <li class="nav__item"><a class="nav__link" href="noticias.html">Noticias</a></li>
+        <li class="nav__item"><a class="nav__link" href="favoritos.html">Favoritos</a></li>
+        <li class="nav__item"><a class="nav__link" href="publicar.html">Publicar</a></li>
+        <li class="nav__item"><a class="nav__link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn--primary btn--sm header__cta" href="noticias.html">Explorar noticias</a>
+    </div>
+  </header>
+
+  <main class="main" id="contenido">
+    <!-- Sección de bienvenida (hero) -->
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <h1 class="hero__title">Las noticias que importan en tu ciudad, en un solo lugar.</h1>
+          <p class="hero__subtitle">Pulso reúne la actualidad local organizada por categoría.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="noticias.html">Ver noticias</a>
+            <a class="btn btn--secondary" href="contacto.html">Contáctanos</a>
+          </div>
+        </div>
+        <div class="hero__media">
+          <div class="placeholder placeholder--neutral">
+            <img class="placeholder__img" src="assets/img/hero.jpg" alt="Persona sentada en una banca mirando el paisaje">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Noticias destacadas: las tarjetas se generan desde el JSON (js/pages/home.js) -->
+    <section class="section" aria-labelledby="destacadas-title">
+      <div class="container">
+        <h2 class="section__title" id="destacadas-title">Noticias destacadas</h2>
+        <div class="grid" id="destacadas" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- Sección informativa -->
+    <section class="section section--surface" aria-labelledby="porque-title">
+      <div class="container">
+        <h2 class="section__title" id="porque-title">¿Por qué Pulso?</h2>
+        <div class="features">
+          <article class="feature">
+            <div class="feature__icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"></path><path d="M3 13l9 5 9-5"></path></svg></div>
+            <h3 class="feature__title">Organizadas por categoría</h3>
+            <p class="feature__text">Educación, tecnología, turismo y comercio, cada tema en su propio espacio.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4z"></path><path d="M14 6l4 4"></path></svg></div>
+            <h3 class="feature__title">Guarda tus favoritas</h3>
+            <p class="feature__text">Marca con un corazón las noticias que quieres leer más tarde.</p>
+          </article>
+          <article class="feature">
+            <div class="feature__icon"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16v4z"/><path d="M14 6l4 4"/></svg></div>
+            <h3 class="feature__title">Publica tu noticia</h3>
+            <p class="feature__text">Cuenta lo que pasa en tu comunidad y llega a más lectores.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="section" aria-labelledby="testimonios-title">
+      <div class="container">
+        <h2 class="section__title" id="testimonios-title">Lo que dicen nuestros lectores</h2>
+        <div class="testimonials">
+          <figure class="testimonial">
+            <blockquote class="testimonial__quote">“Encuentro las noticias de mi ciudad ordenadas por tema. Reviso Educación todas las mañanas antes de clase.”</blockquote>
+            <figcaption class="testimonial__author">
+              <span class="avatar" aria-hidden="true">VO</span>
+              <span><span class="testimonial__name">Valentina Ortiz</span><span class="testimonial__role">Docente de secundaria</span></span>
+            </figcaption>
+          </figure>
+          <figure class="testimonial">
+            <blockquote class="testimonial__quote">“Publiqué la apertura de mi tienda en Comercio y en una semana llegaron clientes nuevos del barrio.”</blockquote>
+            <figcaption class="testimonial__author">
+              <span class="avatar" aria-hidden="true">AC</span>
+              <span><span class="testimonial__name">Andrés Castaño</span><span class="testimonial__role">Emprendedor</span></span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Llamado a la acción -->
+    <section class="cta-band">
+      <div class="container cta-band__inner">
+        <h2 class="cta-band__title">¿Tienes una noticia para contar?</h2>
+        <a class="btn btn--primary" href="publicar.html">Publicar ahora</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Pie de página común a todas las páginas ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="logo" href="index.html" aria-label="Pulso, ir al inicio">Pulso<span class="logo__dot">.</span></a>
+          <p class="footer__desc">Portal de noticias locales organizado por categorías: educación, tecnología, turismo y comercio.</p>
+          <ul class="social" aria-label="Redes sociales">
+            <li><a class="social__link" href="#" aria-label="Facebook"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8.6c0-.3.3-.6.6-.6z"/></svg></a></li>
+            <li><a class="social__link" href="#" aria-label="Instagram"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a></li>
+            <li><a class="social__link" href="#" aria-label="X"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M20 4l-6.6 7.4M10.6 13.6L4 20"/></svg></a></li>
+            <li><a class="social__link" href="#" aria-label="YouTube"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg></a></li>
+          </ul>
+        </div>
+        <nav class="footer__nav" aria-label="Navegación del pie de página">
+          <h2 class="footer__title">Navegación</h2>
+          <ul class="footer__list">
+            <li><a class="footer__link" href="index.html">Inicio</a></li>
+            <li><a class="footer__link" href="noticias.html">Noticias</a></li>
+            <li><a class="footer__link" href="favoritos.html">Favoritos</a></li>
+            <li><a class="footer__link" href="publicar.html">Publicar</a></li>
+            <li><a class="footer__link" href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="footer__col">
+          <h2 class="footer__title">Contacto</h2>
+          <address class="footer__contact">
+            <a class="footer__contact-item" href="mailto:contacto@pulsonoticias.co"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="M3 7l9 6 9-6"></path></svg>contacto@pulsonoticias.co</a>
+            <a class="footer__contact-item" href="tel:+576015550142"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg>+57 (601) 555 0142</a>
+            <span class="footer__contact-item"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>Bogotá, Colombia</span>
+          </address>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span data-anio>2026</span> Pulso. Todos los derechos reservados.</p>
+        <p>Proyecto académico</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

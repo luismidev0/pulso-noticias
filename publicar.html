@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Publicar noticia · Pulso</title>
+  <meta name="description" content="Publica una noticia en Pulso.">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="data/noticias.fallback.js" defer></script>
+  <script src="js/icons.js" defer></script>
+  <script src="js/store.js" defer></script>
+  <script src="js/ui.js" defer></script>
+  <script src="js/validation.js" defer></script>
+  <script src="js/pages/publicar.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <!-- ===== Encabezado común a todas las páginas ===== -->
+  <header class="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html" aria-label="Pulso, ir al inicio">Pulso<span class="logo__dot">.</span></a>
+      <button class="nav-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-principal"></button>
+      <nav class="header__nav" id="menu-principal" aria-label="Navegación principal">
+        <ul class="nav">
+        <li class="nav__item"><a class="nav__link" href="index.html">Inicio</a></li>
+        <li class="nav__item"><a class="nav__link" href="noticias.html">Noticias</a></li>
+        <li class="nav__item"><a class="nav__link" href="favoritos.html">Favoritos</a></li>
+        <li class="nav__item"><a class="nav__link nav__link--active" href="publicar.html" aria-current="page">Publicar</a></li>
+        <li class="nav__item"><a class="nav__link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn--primary btn--sm header__cta" href="noticias.html">Explorar noticias</a>
+    </div>
+  </header>
+
+  <main class="main" id="contenido">
+    <section class="page-header">
+      <div class="container">
+        <h1 class="page-header__title">Publicar noticia</h1>
+        <p class="page-header__subtitle">Cuenta lo que pasa en tu comunidad. La noticia aparecerá de inmediato en el listado.</p>
+      </div>
+    </section>
+
+    <section class="container publish">
+      <!-- Formulario de creación (mini CRUD: crear) -->
+      <div class="form-card">
+        <form class="form" id="form-publicar" novalidate>
+          <p class="form__note">Los campos marcados con <span class="field__required">*</span> son obligatorios.</p>
+
+          <div class="field">
+            <label class="field__label" for="titulo">Título <span class="field__required">*</span></label>
+            <div class="field__control"><input class="input" id="titulo" name="titulo" type="text" maxlength="120" data-reglas="requerido|min:10|max:120" placeholder="Ej. Abren inscripciones para el festival de cine del barrio"></div>
+          </div>
+
+          <div class="field__grid">
+            <div class="field">
+              <label class="field__label" for="categoria">Categoría <span class="field__required">*</span></label>
+              <div class="field__control">
+                <select class="input input--select" id="categoria" name="categoria" data-reglas="requerido">
+                  <option value="">Selecciona una categoría</option>
+                  <option value="educacion">Educación</option>
+                  <option value="tecnologia">Tecnología</option>
+                  <option value="turismo">Turismo</option>
+                  <option value="comercio">Comercio</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field__label" for="autor">Autor <span class="field__required">*</span></label>
+              <div class="field__control"><input class="input" id="autor" name="autor" type="text" data-reglas="requerido|min:3" placeholder="Tu nombre" autocomplete="name"></div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="resumen">Resumen <span class="field__required">*</span></label>
+            <div class="field__control"><textarea class="input input--textarea" id="resumen" name="resumen" rows="2" maxlength="200" data-reglas="requerido|min:20|max:200" placeholder="Una o dos frases que se mostrarán en la tarjeta"></textarea></div>
+            <div class="field__row"><span class="field__help">Se muestra en el listado.</span><span class="field__counter" id="contador-resumen">0/200</span></div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="cuerpo">Contenido de la noticia <span class="field__required">*</span></label>
+            <div class="field__control"><textarea class="input input--textarea" id="cuerpo" name="cuerpo" rows="8" data-reglas="requerido|min:80" placeholder="Separa los párrafos con una línea en blanco"></textarea></div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="imagen">Imagen (opcional)</label>
+            <div class="field__control"><input class="input file-input" id="imagen" name="imagen" type="file" accept="image/jpeg,image/png,image/webp" data-reglas="imagen"></div>
+            <span class="field__help">JPG, PNG o WebP de hasta 5 MB. Si no subes una, se usa el color de la categoría.</span>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="pie">Pie de foto (opcional)</label>
+            <div class="field__control"><input class="input" id="pie" name="pie" type="text" maxlength="160" placeholder="Describe la imagen y su autor"></div>
+          </div>
+
+          <button class="btn btn--primary btn--block" type="submit" id="btn-publicar">Publicar noticia</button>
+        </form>
+      </div>
+
+      <!-- Vista previa y noticias propias (mini CRUD: eliminar) -->
+      <aside class="my-news">
+        <h2 class="my-news__title">Vista previa de la imagen</h2>
+        <div class="preview" id="preview"></div>
+        <h2 class="my-news__title">Noticias que publicaste</h2>
+        <ul class="my-news__list" id="mis-noticias"></ul>
+      </aside>
+    </section>
+  </main>
+
+  <!-- ===== Pie de página común a todas las páginas ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__grid">
+        <div class="footer__brand">
+          <a class="logo" href="index.html" aria-label="Pulso, ir al inicio">Pulso<span class="logo__dot">.</span></a>
+          <p class="footer__desc">Portal de noticias locales organizado por categorías: educación, tecnología, turismo y comercio.</p>
+          <ul class="social" aria-label="Redes sociales">
+            <li><a class="social__link" href="#" aria-label="Facebook"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v3H7v4h3v6h4v-6h3l1-4h-4V8.6c0-.3.3-.6.6-.6z"/></svg></a></li>
+            <li><a class="social__link" href="#" aria-label="Instagram"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></svg></a></li>
+            <li><a class="social__link" href="#" aria-label="X"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M20 4l-6.6 7.4M10.6 13.6L4 20"/></svg></a></li>
+            <li><a class="social__link" href="#" aria-label="YouTube"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg></a></li>
+          </ul>
+        </div>
+        <nav class="footer__nav" aria-label="Navegación del pie de página">
+          <h2 class="footer__title">Navegación</h2>
+          <ul class="footer__list">
+            <li><a class="footer__link" href="index.html">Inicio</a></li>
+            <li><a class="footer__link" href="noticias.html">Noticias</a></li>
+            <li><a class="footer__link" href="favoritos.html">Favoritos</a></li>
+            <li><a class="footer__link" href="publicar.html">Publicar</a></li>
+            <li><a class="footer__link" href="contacto.html">Contacto</a></li>
+          </ul>
+        </nav>
+        <div class="footer__col">
+          <h2 class="footer__title">Contacto</h2>
+          <address class="footer__contact">
+            <a class="footer__contact-item" href="mailto:contacto@pulsonoticias.co"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="M3 7l9 6 9-6"></path></svg>contacto@pulsonoticias.co</a>
+            <a class="footer__contact-item" href="tel:+576015550142"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"></path></svg>+57 (601) 555 0142</a>
+            <span class="footer__contact-item"><svg aria-hidden="true" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>Bogotá, Colombia</span>
+          </address>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© <span data-anio>2026</span> Pulso. Todos los derechos reservados.</p>
+        <p>Proyecto académico</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
