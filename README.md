@@ -12,7 +12,7 @@ Proyecto del módulo **Desarrollo de Front-end** (Politécnico Grancolombiano, g
 
 ## Funcionalidades 
 
-| Funcionalidad | Ruta | Implementación |
+| Funcionalidad | Ruta | Implementación | 
 |---|---|---|
 | Página de inicio | `/` | Bienvenida, destacadas (con esqueleto, estado vacío y error con «Reintentar»), sección informativa, testimonios y llamado a la acción |
 | Catálogo de noticias | `/noticias` | Búsqueda sin tildes (espera de 250 ms), chips de categoría, orden, 9 por página; el estado vive en `?cat=&q=&orden=&pagina=` |
