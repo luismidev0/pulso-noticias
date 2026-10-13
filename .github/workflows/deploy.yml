@@ -1,0 +1,58 @@
+# Despliegue de Pulso en GitHub Pages.
+# Se ejecuta al subir cambios a main (o a mano desde la pestaña Actions).
+name: Desplegar en GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permisos mínimos que necesita la acción oficial de Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Evita despliegues simultáneos; el último gana
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      # El sitio se publica en https://<usuario>.github.io/pulso-noticias/,
+      # por eso el base-href debe ser /pulso-noticias/
+      - name: Construir
+        run: npx ng build --base-href /pulso-noticias/
+
+      # GitHub Pages responde con 404.html cuando una ruta no existe como archivo.
+      # Al copiar index.html como 404.html, recargar /noticias/algo carga la app
+      # y Angular resuelve la ruta.
+      - name: Copiar index.html como 404.html
+        run: cp dist/pulso-noticias/browser/index.html dist/pulso-noticias/browser/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/pulso-noticias/browser
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.despliegue.outputs.page_url }}
+    steps:
+      - id: despliegue
+        uses: actions/deploy-pages@v4
