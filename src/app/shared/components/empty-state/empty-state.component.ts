@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, booleanAttribute, computed, input, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IconComponent, NombreIcono } from '../icon/icon.component';
 
@@ -16,6 +16,8 @@ import { IconComponent, NombreIcono } from '../icon/icon.component';
   selector: 'app-empty-state',
   imports: [IconComponent, RouterLink],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  // Para que .state-block ocupe la fila completa cuando se usa dentro de .grid
+  host: { style: 'display: contents' },
   template: `
     <div class="state-block">
       <div class="empty" role="status">
@@ -56,7 +58,7 @@ export class EmptyStateComponent {
   readonly titulo = input.required<string>();
   readonly texto = input<string>('');
   /** Modo error de carga: ícono, texto y botón "Reintentar" por defecto. */
-  readonly error = input(false);
+  readonly error = input(false, { transform: booleanAttribute });
 
   readonly botonTexto = input<string>('');
   /** Destino del botón cuando es un enlace (ruta del Router). */

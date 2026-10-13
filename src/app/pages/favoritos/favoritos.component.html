@@ -1,0 +1,43 @@
+<section class="page-header">
+  <div class="container page-header__row">
+    <div>
+      <h1 class="page-header__title">Mis favoritos</h1>
+      <p class="page-header__subtitle">Tus noticias guardadas se conservan en este navegador</p>
+    </div>
+    <span class="counter" aria-live="polite">
+      <app-icon nombre="heartFilled" />
+      <span>{{ contador() }}</span>
+    </span>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0" aria-label="Noticias guardadas">
+  <div class="container">
+    <div class="grid">
+      @switch (estado()) {
+        @case ('cargando') {
+          @for (i of [1, 2, 3]; track i) {
+            <app-skeleton-card />
+          }
+        }
+        @case ('error') {
+          <app-empty-state error titulo="No se pudieron cargar tus favoritos" (accion)="cargar()" />
+        }
+        @default {
+          @for (noticia of lista(); track noticia.id) {
+            <app-news-card [noticia]="noticia" modo="favoritos" (quitar)="quitar($event)" />
+          } @empty {
+            <!-- Estado vacío: invita a explorar en lugar de mostrar una página en blanco -->
+            <app-empty-state
+              ilustracion="emptyFav"
+              titulo="Aún no tienes noticias guardadas"
+              texto="Toca el corazón de cualquier noticia para guardarla aquí."
+              botonTexto="Explorar noticias"
+              botonLink="/noticias"
+            />
+          }
+        }
+      }
+    </div>
+  </div>
+</section>

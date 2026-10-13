@@ -376,3 +376,11 @@ body.has-modal{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
 }
+
+/* ==========================================================================
+   Ajustes propios de la versión Angular
+   ========================================================================== */
+/* Las páginas son componentes (elementos personalizados): se comportan como bloque */
+router-outlet + * { display: block; }
+/* <main> recibe el foco con "Saltar al contenido"; no necesita anillo visible */
+.main:focus { outline: none; }

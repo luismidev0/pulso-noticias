@@ -1,0 +1,152 @@
+@switch (estado()) {
+  @case ('cargando') {
+    <!-- Esqueleto de la cabecera y los primeros párrafos durante la carga -->
+    <div class="container">
+      <div class="reading article-header" aria-hidden="true">
+        <span class="skeleton skeleton--badge"></span>
+        <div class="skeleton-stack" style="margin-top: 24px">
+          <span class="skeleton skeleton--h1"></span>
+          <span class="skeleton skeleton--h1" style="width: 60%"></span>
+        </div>
+        <div class="skeleton-stack" style="margin-top: 48px">
+          <span class="skeleton skeleton--line"></span>
+          <span class="skeleton skeleton--line"></span>
+          <span class="skeleton skeleton--line" style="width: 80%"></span>
+        </div>
+      </div>
+    </div>
+  }
+  @case ('error') {
+    <div class="container">
+      <app-empty-state error titulo="No se pudo cargar la noticia" (accion)="cargar()" />
+    </div>
+  }
+  @default {
+    @if (noticia(); as n) {
+      <!-- Ruta de navegación -->
+      <nav class="breadcrumb container" aria-label="Ruta de navegación">
+        <ol class="breadcrumb__list">
+          <li class="breadcrumb__item"><a class="breadcrumb__link" routerLink="/">Inicio</a></li>
+          <li class="breadcrumb__item"><a class="breadcrumb__link" routerLink="/noticias">Noticias</a></li>
+          <li class="breadcrumb__item">
+            <a class="breadcrumb__link" routerLink="/noticias" [queryParams]="{ cat: n.categoria }">{{ categoria() }}</a>
+          </li>
+          <li class="breadcrumb__item">
+            <span class="breadcrumb__current" aria-current="page">{{ n.titulo }}</span>
+          </li>
+        </ol>
+      </nav>
+
+      <article class="article">
+        <!-- Cabecera: categoría, título, metadatos y acciones -->
+        <header class="container">
+          <div class="reading article-header">
+            <span [class]="'badge badge--' + n.categoria">{{ categoria() }}</span>
+            <h1 class="article-header__title">{{ n.titulo }}</h1>
+            <div class="article-meta">
+              <span class="avatar avatar--sm" aria-hidden="true">{{ iniciales() }}</span>
+              <span class="article-meta__author">{{ n.autor }}</span>
+              <span class="article-meta__sep" aria-hidden="true">·</span>
+              <time [attr.datetime]="n.fecha">{{ n.fecha | fechaCorta }}</time>
+              <span class="article-meta__sep" aria-hidden="true">·</span>
+              <span>{{ n.lectura || 3 }} min de lectura</span>
+            </div>
+            <div class="article-actions">
+              <!-- Botón de favorito en sus dos estados: guardar / guardada -->
+              <button
+                class="btn"
+                [class.btn--fav-active]="esFavorita()"
+                [class.btn--primary]="!esFavorita()"
+                type="button"
+                [attr.aria-pressed]="esFavorita()"
+                (click)="alternarFavorito()"
+              >
+                <app-icon [nombre]="esFavorita() ? 'heartFilled' : 'heart'" clase="btn__icon" />
+                {{ esFavorita() ? 'Guardada en favoritos' : 'Guardar en favoritos' }}
+              </button>
+              <button class="btn btn--ghost" type="button" (click)="compartir()">
+                <app-icon nombre="share" clase="btn__icon" />Compartir
+              </button>
+              <button
+                class="btn btn--ghost btn--ghost-error article-actions__end"
+                type="button"
+                (click)="eliminar()"
+              >
+                <app-icon nombre="trash" clase="btn__icon" />Eliminar noticia
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <!-- Imagen representativa -->
+        <div class="container">
+          <figure class="article-figure">
+            <div class="article-figure__media">
+              <app-media [categoria]="n.categoria" [imagen]="n.imagen" [imagenAlt]="n.imagenAlt" />
+            </div>
+            @if (n.pieFoto) {
+              <figcaption class="article-figure__caption">{{ n.pieFoto }}</figcaption>
+            }
+          </figure>
+        </div>
+
+        <!-- Cuerpo del artículo, por bloques -->
+        <div class="container">
+          <div class="reading article-body">
+            @for (bloque of n.cuerpo; track $index) {
+              @switch (bloque.tipo) {
+                @case ('h2') {
+                  <h2 class="article-body__h2">{{ bloque.texto }}</h2>
+                }
+                @case ('cita') {
+                  <blockquote class="quote">
+                    <p class="quote__text">“{{ bloque.texto }}”</p>
+                    @if (bloque.autor) {
+                      <cite class="quote__cite">{{ bloque.autor }}</cite>
+                    }
+                  </blockquote>
+                }
+                @default {
+                  <!-- El primer bloque es la entrada (lead), más grande -->
+                  <p [class]="$first ? 'article-body__lead' : 'article-body__p'">{{ bloque.texto }}</p>
+                }
+              }
+            }
+          </div>
+        </div>
+      </article>
+
+      <!-- Noticias relacionadas -->
+      @if (relacionadas().length) {
+        <section class="related" aria-labelledby="rel-title">
+          <div class="container">
+            <h2 class="section__title" id="rel-title">Noticias relacionadas</h2>
+            <div class="grid">
+              @for (r of relacionadas(); track r.id) {
+                <app-news-card [noticia]="r" />
+              }
+            </div>
+          </div>
+        </section>
+      }
+
+      <!-- Llamado a contacto -->
+      <section class="container">
+        <div class="cta-box">
+          <h2 class="cta-box__title">¿Tienes información sobre esta noticia?</h2>
+          <a class="btn btn--secondary" routerLink="/contacto">Contáctanos</a>
+        </div>
+      </section>
+    } @else {
+      <div class="container">
+        <app-empty-state
+          codigo="404"
+          titulo="Noticia no encontrada"
+          texto="Es posible que la noticia haya sido eliminada o que el enlace esté incompleto."
+          botonTexto="Volver al listado"
+          botonLink="/noticias"
+        />
+      </div>
+    }
+  }
+}
