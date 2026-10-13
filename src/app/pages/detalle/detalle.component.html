@@ -82,7 +82,7 @@
         <div class="container">
           <figure class="article-figure">
             <div class="article-figure__media">
-              <app-media [categoria]="n.categoria" [imagen]="n.imagen" [imagenAlt]="n.imagenAlt" />
+              <app-media [categoria]="n.categoria" [imagen]="n.imagen" [imagenAlt]="n.imagenAlt" carga="eager" />
             </div>
             @if (n.pieFoto) {
               <figcaption class="article-figure__caption">{{ n.pieFoto }}</figcaption>

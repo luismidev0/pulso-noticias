@@ -23,7 +23,7 @@ import { IconComponent } from '../icon/icon.component';
       <app-icon nombre="image" clase="placeholder__icon" />
       <span>{{ texto() }}</span>
       @if (imagen()) {
-        <img class="placeholder__img" [src]="imagen()" [alt]="imagenAlt()" loading="lazy" />
+        <img class="placeholder__img" [src]="imagen()" [alt]="imagenAlt()" [loading]="carga()" />
       }
     </div>
   `,
@@ -36,6 +36,8 @@ export class MediaComponent {
   readonly imagenAlt = input<string>('');
   /** Texto del marcador; por defecto, el nombre de la categoría. */
   readonly etiqueta = input<string>('');
+  /** `eager` para imágenes visibles al abrir la página (evita retrasar la imagen principal); `lazy` para el resto. */
+  readonly carga = input<'lazy' | 'eager'>('lazy');
 
   protected readonly texto = computed(
     () => this.etiqueta() || this.noticias.nombreCategoria(this.categoria()),

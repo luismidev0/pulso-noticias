@@ -24,8 +24,8 @@
           <app-empty-state error titulo="No se pudieron cargar tus favoritos" (accion)="cargar()" />
         }
         @default {
-          @for (noticia of lista(); track noticia.id) {
-            <app-news-card [noticia]="noticia" modo="favoritos" (quitar)="quitar($event)" />
+          @for (noticia of lista(); track noticia.id; let i = $index) {
+            <app-news-card [carga]="i < 3 ? 'eager' : 'lazy'" [noticia]="noticia" modo="favoritos" (quitar)="quitar($event)" />
           } @empty {
             <!-- Estado vacío: invita a explorar en lugar de mostrar una página en blanco -->
             <app-empty-state

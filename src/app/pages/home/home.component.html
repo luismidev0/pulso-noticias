@@ -36,8 +36,8 @@
           <app-empty-state error titulo="No se pudo cargar el contenido" (accion)="cargar()" />
         }
         @default {
-          @for (noticia of destacadas(); track noticia.id) {
-            <app-news-card [noticia]="noticia" />
+          @for (noticia of destacadas(); track noticia.id; let i = $index) {
+            <app-news-card [carga]="i < 3 ? 'eager' : 'lazy'" [noticia]="noticia" />
           } @empty {
             <app-empty-state
               ilustracion="emptySearch"

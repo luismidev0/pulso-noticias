@@ -33,6 +33,7 @@ import { MediaComponent } from '../media/media.component';
           [categoria]="noticia().categoria"
           [imagen]="noticia().imagen"
           [imagenAlt]="noticia().imagenAlt"
+          [carga]="carga()"
         />
         <button
           class="card__fav"
@@ -74,6 +75,8 @@ export class NewsCardComponent {
   readonly noticia = input.required<Noticia>();
   /** `favoritos` cambia el botón inferior por "Quitar de favoritos". */
   readonly modo = input<'normal' | 'favoritos'>('normal');
+  /** Carga de la imagen: `eager` para las primeras tarjetas de la página. */
+  readonly carga = input<'lazy' | 'eager'>('lazy');
   /** Se emite con el id cuando, en modo favoritos, se pide quitar la noticia. */
   readonly quitar = output<string>();
 
