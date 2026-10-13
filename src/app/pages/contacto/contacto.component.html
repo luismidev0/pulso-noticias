@@ -1,0 +1,180 @@
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-header__title">Contacto</h1>
+    <p class="page-header__subtitle">
+      Escríbenos si tienes una consulta, una noticia para compartir o encontraste un error.
+    </p>
+  </div>
+</section>
+
+<section class="container contact">
+  <div class="form-card">
+    <!-- Banner de error de envío -->
+    @if (errorEnvio()) {
+      <div #alerta class="alert" role="alert" style="margin-bottom: 24px">
+        <app-icon nombre="alertCircle" />
+        <div>
+          <p class="alert__title">No pudimos enviar tu mensaje. Intenta de nuevo.</p>
+          <p>Tus datos siguen en el formulario.</p>
+        </div>
+      </div>
+    }
+
+    @if (!confirmado()) {
+      <form class="form" [formGroup]="form" (ngSubmit)="enviar()" novalidate>
+        <p class="form__note">Los campos marcados con <span class="field__required">*</span> son obligatorios.</p>
+
+        <div class="field" [class.field--error]="validacion.error('nombre')">
+          <label class="field__label" for="nombre">Nombre completo <span class="field__required">*</span></label>
+          <div class="field__control">
+            <input
+              class="input"
+              id="nombre"
+              formControlName="nombre"
+              type="text"
+              autocomplete="name"
+              placeholder="Ej. María Fernanda López"
+              [attr.aria-invalid]="!!validacion.error('nombre')"
+              [attr.aria-describedby]="validacion.error('nombre') ? 'nombre-error' : null"
+              (blur)="validacion.alSalir($event, 'nombre')"
+            />
+            @if (validacion.error('nombre')) {
+              <app-icon nombre="fieldAlert" clase="field__alert" />
+            }
+          </div>
+          <app-field-error campo="nombre" [mensaje]="validacion.error('nombre')" />
+        </div>
+
+        <div class="field" [class.field--error]="validacion.error('correo')">
+          <label class="field__label" for="correo">Correo electrónico <span class="field__required">*</span></label>
+          <div class="field__control">
+            <input
+              class="input"
+              id="correo"
+              formControlName="correo"
+              type="email"
+              autocomplete="email"
+              placeholder="nombre@dominio.com"
+              [attr.aria-invalid]="!!validacion.error('correo')"
+              [attr.aria-describedby]="validacion.error('correo') ? 'correo-error' : null"
+              (blur)="validacion.alSalir($event, 'correo')"
+            />
+            @if (validacion.error('correo')) {
+              <app-icon nombre="fieldAlert" clase="field__alert" />
+            }
+          </div>
+          <span class="field__help">Usaremos este correo para responderte</span>
+          <app-field-error campo="correo" [mensaje]="validacion.error('correo')" />
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="asunto">Asunto</label>
+          <div class="field__control">
+            <select class="input input--select" id="asunto" formControlName="asunto">
+              @for (asunto of asuntos; track asunto) {
+                <option [value]="asunto">{{ asunto }}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="field" [class.field--error]="validacion.error('mensaje')">
+          <label class="field__label" for="mensaje">Mensaje <span class="field__required">*</span></label>
+          <div class="field__control">
+            <textarea
+              class="input input--textarea"
+              id="mensaje"
+              formControlName="mensaje"
+              rows="5"
+              [attr.maxlength]="maxMensaje"
+              placeholder="Escribe tu mensaje..."
+              [attr.aria-invalid]="!!validacion.error('mensaje')"
+              [attr.aria-describedby]="validacion.error('mensaje') ? 'mensaje-error' : null"
+              (blur)="validacion.alSalir($event, 'mensaje')"
+            ></textarea>
+            @if (validacion.error('mensaje')) {
+              <app-icon nombre="fieldAlert" clase="field__alert" />
+            }
+          </div>
+          <div class="field__row">
+            <span class="field__counter">{{ valores().mensaje?.length ?? 0 }}/{{ maxMensaje }}</span>
+          </div>
+          <app-field-error campo="mensaje" [mensaje]="validacion.error('mensaje')" />
+        </div>
+
+        <div class="field" [class.field--error]="validacion.error('acepto')">
+          <label class="checkbox">
+            <input
+              class="checkbox__input"
+              type="checkbox"
+              id="acepto"
+              formControlName="acepto"
+              [attr.aria-invalid]="!!validacion.error('acepto')"
+              [attr.aria-describedby]="validacion.error('acepto') ? 'acepto-error' : null"
+              (change)="validacion.tocar('acepto')"
+            />
+            <span>Acepto el tratamiento de mis datos personales <span class="field__required">*</span></span>
+          </label>
+          <app-field-error campo="acepto" [mensaje]="validacion.error('acepto')" />
+        </div>
+
+        <button class="btn btn--primary btn--block" type="submit" [disabled]="enviando()">
+          @if (enviando()) {
+            <span class="spinner" aria-hidden="true"></span>Enviando...
+          } @else {
+            Enviar mensaje
+          }
+        </button>
+      </form>
+    } @else {
+      <!-- Confirmación: reemplaza al formulario después de enviar -->
+      <div #confirmacion class="success" role="status" tabindex="-1">
+        <span class="success__icon"><app-icon nombre="check" /></span>
+        <h2 class="success__title">¡Mensaje enviado!</h2>
+        <p class="success__text">Te responderemos en un plazo máximo de 48 horas.</p>
+        <a class="btn btn--secondary" routerLink="/">Volver al inicio</a>
+      </div>
+    }
+  </div>
+
+  <!-- Información de contacto -->
+  <aside class="contact-info" aria-labelledby="info-title">
+    <h2 class="contact-info__title" id="info-title">Información de contacto</h2>
+    <ul class="info-list">
+      <li class="info-item">
+        <span class="info-item__icon"><app-icon nombre="mail" /></span>
+        <span
+          ><span class="info-item__label">Correo</span
+          ><a class="info-item__value" href="mailto:contacto@pulsonoticias.co">contacto&#64;pulsonoticias.co</a></span
+        >
+      </li>
+      <li class="info-item">
+        <span class="info-item__icon"><app-icon nombre="phone" /></span>
+        <span
+          ><span class="info-item__label">Teléfono</span
+          ><a class="info-item__value" href="tel:+576015550142">+57 (601) 555 0142</a></span
+        >
+      </li>
+      <li class="info-item">
+        <span class="info-item__icon"><app-icon nombre="pin" /></span>
+        <span><span class="info-item__label">Ciudad</span><span class="info-item__value">Bogotá, Colombia</span></span>
+      </li>
+      <li class="info-item">
+        <span class="info-item__icon"><app-icon nombre="clock" /></span>
+        <span
+          ><span class="info-item__label">Horario de atención</span
+          ><span class="info-item__value">Lunes a viernes, 8:00 a. m. – 6:00 p. m.</span></span
+        >
+      </li>
+    </ul>
+    <!-- Mapa de OpenStreetMap (no requiere API key). El src es estático, por eso Angular no lo bloquea. -->
+    <div class="map">
+      <iframe
+        title="Mapa de Bogotá, Colombia, de OpenStreetMap"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=-74.15%2C4.58%2C-73.99%2C4.80&amp;layer=mapnik&amp;marker=4.711%2C-74.0721"
+        loading="lazy"
+        referrerpolicy="no-referrer"
+      ></iframe>
+    </div>
+  </aside>
+</section>
