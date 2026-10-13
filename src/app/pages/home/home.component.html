@@ -1,0 +1,106 @@
+<!-- Sección de bienvenida (hero) -->
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <h1 class="hero__title">Las noticias que importan en tu ciudad, en un solo lugar.</h1>
+      <p class="hero__subtitle">Pulso reúne la actualidad local organizada por categoría.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" routerLink="/noticias">Ver noticias</a>
+        <a class="btn btn--secondary" routerLink="/contacto">Contáctanos</a>
+      </div>
+    </div>
+    <div class="hero__media">
+      <div class="placeholder placeholder--neutral">
+        <img
+          class="placeholder__img"
+          src="assets/img/hero.jpg"
+          alt="Capitolio Nacional y Plaza de Bolívar en Bogotá"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Noticias destacadas: una tarjeta por noticia, con estados de carga, vacío y error -->
+<section class="section" aria-labelledby="destacadas-title">
+  <div class="container">
+    <h2 class="section__title" id="destacadas-title">Noticias destacadas</h2>
+    <div class="grid" aria-live="polite">
+      @switch (estado()) {
+        @case ('cargando') {
+          @for (i of [1, 2, 3]; track i) {
+            <app-skeleton-card />
+          }
+        }
+        @case ('error') {
+          <app-empty-state error titulo="No se pudo cargar el contenido" (accion)="cargar()" />
+        }
+        @default {
+          @for (noticia of destacadas(); track noticia.id; let i = $index) {
+            <app-news-card [carga]="i < 3 ? 'eager' : 'lazy'" [noticia]="noticia" />
+          } @empty {
+            <app-empty-state
+              ilustracion="emptySearch"
+              titulo="Aún no hay noticias publicadas"
+              botonTexto="Publicar la primera"
+              botonLink="/publicar"
+            />
+          }
+        }
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Sección informativa -->
+<section class="section section--surface" aria-labelledby="porque-title">
+  <div class="container">
+    <h2 class="section__title" id="porque-title">¿Por qué Pulso?</h2>
+    <div class="features">
+      <article class="feature">
+        <div class="feature__icon"><app-icon nombre="layers" /></div>
+        <h3 class="feature__title">Organizadas por categoría</h3>
+        <p class="feature__text">Educación, tecnología, turismo y comercio, cada tema en su propio espacio.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon"><app-icon nombre="heartOutlineFeature" /></div>
+        <h3 class="feature__title">Guarda tus favoritas</h3>
+        <p class="feature__text">Marca con un corazón las noticias que quieres leer más tarde.</p>
+      </article>
+      <article class="feature">
+        <div class="feature__icon"><app-icon nombre="heartOutlineFeature" /></div>
+        <h3 class="feature__title">Publica tu noticia</h3>
+        <p class="feature__text">Cuenta lo que pasa en tu comunidad y llega a más lectores.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonios -->
+<section class="section" aria-labelledby="testimonios-title">
+  <div class="container">
+    <h2 class="section__title" id="testimonios-title">Lo que dicen nuestros lectores</h2>
+    <div class="testimonials">
+      @for (t of testimonios; track t.nombre) {
+        <figure class="testimonial">
+          <blockquote class="testimonial__quote">“{{ t.texto }}”</blockquote>
+          <figcaption class="testimonial__author">
+            <span class="avatar" aria-hidden="true">{{ t.iniciales }}</span>
+            <span
+              ><span class="testimonial__name">{{ t.nombre }}</span
+              ><span class="testimonial__role">{{ t.rol }}</span></span
+            >
+          </figcaption>
+        </figure>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Llamado a la acción -->
+<section class="cta-band">
+  <div class="container cta-band__inner">
+    <h2 class="cta-band__title">¿Tienes una noticia para contar?</h2>
+    <a class="btn btn--primary" routerLink="/publicar">Publicar ahora</a>
+  </div>
+</section>

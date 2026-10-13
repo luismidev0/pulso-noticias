@@ -1,0 +1,191 @@
+<section class="page-header">
+  <div class="container">
+    <h1 class="page-header__title">Publicar noticia</h1>
+    <p class="page-header__subtitle">
+      Cuenta lo que pasa en tu comunidad. La noticia aparecerá de inmediato en el listado.
+    </p>
+  </div>
+</section>
+
+<section class="container publish">
+  <!-- Formulario de creación (mini CRUD: crear) -->
+  <div class="form-card">
+    <form class="form" [formGroup]="form" (ngSubmit)="publicar()" novalidate>
+      <p class="form__note">Los campos marcados con <span class="field__required">*</span> son obligatorios.</p>
+
+      <div class="field" [class.field--error]="validacion.error('titulo')">
+        <label class="field__label" for="titulo">Título <span class="field__required">*</span></label>
+        <div class="field__control">
+          <input
+            class="input"
+            id="titulo"
+            formControlName="titulo"
+            type="text"
+            maxlength="120"
+            placeholder="Ej. Abren inscripciones para el festival de cine del barrio"
+            [attr.aria-invalid]="!!validacion.error('titulo')"
+            [attr.aria-describedby]="validacion.error('titulo') ? 'titulo-error' : null"
+            (blur)="validacion.alSalir($event, 'titulo')"
+          />
+          @if (validacion.error('titulo')) {
+            <app-icon nombre="fieldAlert" clase="field__alert" />
+          }
+        </div>
+        <app-field-error campo="titulo" [mensaje]="validacion.error('titulo')" />
+      </div>
+
+      <div class="field__grid">
+        <div class="field" [class.field--error]="validacion.error('categoria')">
+          <label class="field__label" for="categoria">Categoría <span class="field__required">*</span></label>
+          <div class="field__control">
+            <select
+              class="input input--select"
+              id="categoria"
+              formControlName="categoria"
+              [attr.aria-invalid]="!!validacion.error('categoria')"
+              [attr.aria-describedby]="validacion.error('categoria') ? 'categoria-error' : null"
+              (change)="validacion.tocar('categoria')"
+              (blur)="validacion.alSalir($event, 'categoria')"
+            >
+              <option value="">Selecciona una categoría</option>
+              @for (c of categorias; track c.id) {
+                <option [value]="c.id">{{ c.nombre }}</option>
+              }
+            </select>
+          </div>
+          <app-field-error campo="categoria" [mensaje]="validacion.error('categoria')" />
+        </div>
+        <div class="field" [class.field--error]="validacion.error('autor')">
+          <label class="field__label" for="autor">Autor <span class="field__required">*</span></label>
+          <div class="field__control">
+            <input
+              class="input"
+              id="autor"
+              formControlName="autor"
+              type="text"
+              placeholder="Tu nombre"
+              autocomplete="name"
+              [attr.aria-invalid]="!!validacion.error('autor')"
+              [attr.aria-describedby]="validacion.error('autor') ? 'autor-error' : null"
+              (blur)="validacion.alSalir($event, 'autor')"
+            />
+            @if (validacion.error('autor')) {
+              <app-icon nombre="fieldAlert" clase="field__alert" />
+            }
+          </div>
+          <app-field-error campo="autor" [mensaje]="validacion.error('autor')" />
+        </div>
+      </div>
+
+      <div class="field" [class.field--error]="validacion.error('resumen')">
+        <label class="field__label" for="resumen">Resumen <span class="field__required">*</span></label>
+        <div class="field__control">
+          <textarea
+            class="input input--textarea"
+            id="resumen"
+            formControlName="resumen"
+            rows="2"
+            maxlength="200"
+            placeholder="Una o dos frases que se mostrarán en la tarjeta"
+            [attr.aria-invalid]="!!validacion.error('resumen')"
+            [attr.aria-describedby]="validacion.error('resumen') ? 'resumen-error' : null"
+            (blur)="validacion.alSalir($event, 'resumen')"
+          ></textarea>
+          @if (validacion.error('resumen')) {
+            <app-icon nombre="fieldAlert" clase="field__alert" />
+          }
+        </div>
+        <div class="field__row">
+          <span class="field__help">Se muestra en el listado.</span>
+          <span class="field__counter">{{ valores().resumen?.length ?? 0 }}/200</span>
+        </div>
+        <app-field-error campo="resumen" [mensaje]="validacion.error('resumen')" />
+      </div>
+
+      <div class="field" [class.field--error]="validacion.error('cuerpo')">
+        <label class="field__label" for="cuerpo">Contenido de la noticia <span class="field__required">*</span></label>
+        <div class="field__control">
+          <textarea
+            class="input input--textarea"
+            id="cuerpo"
+            formControlName="cuerpo"
+            rows="8"
+            placeholder="Separa los párrafos con una línea en blanco"
+            [attr.aria-invalid]="!!validacion.error('cuerpo')"
+            [attr.aria-describedby]="validacion.error('cuerpo') ? 'cuerpo-error' : null"
+            (blur)="validacion.alSalir($event, 'cuerpo')"
+          ></textarea>
+          @if (validacion.error('cuerpo')) {
+            <app-icon nombre="fieldAlert" clase="field__alert" />
+          }
+        </div>
+        <app-field-error campo="cuerpo" [mensaje]="validacion.error('cuerpo')" />
+      </div>
+
+      <div class="field" [class.field--error]="validacion.error('imagen')">
+        <label class="field__label" for="imagen">Imagen (opcional)</label>
+        <div class="field__control">
+          <input
+            class="input file-input"
+            id="imagen"
+            type="file"
+            accept="image/jpeg,image/png,image/webp"
+            [attr.aria-invalid]="!!validacion.error('imagen')"
+            [attr.aria-describedby]="validacion.error('imagen') ? 'imagen-error' : null"
+            (change)="alElegirImagen($event)"
+          />
+          @if (validacion.error('imagen')) {
+            <app-icon nombre="fieldAlert" clase="field__alert" />
+          }
+        </div>
+        <span class="field__help">JPG, PNG o WebP de hasta 5 MB. Si no subes una, se usa el color de la categoría.</span>
+        <app-field-error campo="imagen" [mensaje]="validacion.error('imagen')" />
+      </div>
+
+      <div class="field">
+        <label class="field__label" for="pie">Pie de foto (opcional)</label>
+        <div class="field__control">
+          <input
+            class="input"
+            id="pie"
+            formControlName="pie"
+            type="text"
+            maxlength="160"
+            placeholder="Describe la imagen y su autor"
+          />
+        </div>
+      </div>
+
+      <button class="btn btn--primary btn--block" type="submit">Publicar noticia</button>
+    </form>
+  </div>
+
+  <!-- Vista previa y noticias propias (mini CRUD: eliminar) -->
+  <aside class="my-news">
+    <h2 class="my-news__title">Vista previa de la imagen</h2>
+    <div class="preview">
+      <app-media
+        [categoria]="categoriaPreview()"
+        [imagen]="imagenDataUrl()"
+        imagenAlt="Vista previa de la imagen"
+        [etiqueta]="imagenDataUrl() ? '' : 'Sin imagen: se usará el color de la categoría'"
+      />
+    </div>
+    <h2 class="my-news__title">Noticias que publicaste</h2>
+    <ul class="my-news__list">
+      @for (n of noticias.propias(); track n.id) {
+        <li class="my-news__item">
+          <span>
+            <a class="my-news__name" [routerLink]="['/noticias', n.id]">{{ n.titulo }}</a>
+            <span class="my-news__meta">{{ noticias.nombreCategoria(n.categoria) }} · {{ n.fecha | fechaCorta }}</span>
+          </span>
+          <button class="btn btn--ghost btn--ghost-error btn--sm" type="button" (click)="eliminar(n.id)">
+            <app-icon nombre="trash" clase="btn__icon" />Eliminar
+          </button>
+        </li>
+      } @empty {
+        <li class="my-news__empty">Todavía no has publicado noticias.</li>
+      }
+    </ul>
+  </aside>
+</section>

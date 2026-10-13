@@ -1,0 +1,151 @@
+<!-- Encabezado de página con buscador -->
+<section class="page-header">
+  <div class="container page-header__row">
+    <div>
+      <h1 class="page-header__title">Noticias</h1>
+      <p class="page-header__subtitle">Explora la actualidad por categoría y guarda lo que quieras leer después.</p>
+    </div>
+    <form class="search" role="search" (submit)="$event.preventDefault()">
+      <label class="visually-hidden" for="buscar">Buscar noticias</label>
+      <app-icon nombre="search" clase="search__icon" />
+      <input
+        #buscador
+        class="input search__input"
+        type="search"
+        id="buscar"
+        name="q"
+        placeholder="Buscar noticias..."
+        autocomplete="off"
+        [(ngModel)]="busqueda"
+        (input)="programarBusqueda()"
+      />
+    </form>
+  </div>
+</section>
+
+<section class="listing" aria-labelledby="listado-title">
+  <div class="container">
+    <h2 class="visually-hidden" id="listado-title">Listado de noticias</h2>
+
+    <!-- Filtros: categoría, orden y contador -->
+    <div class="filters" #filtros>
+      <ul class="chips" aria-label="Filtrar por categoría">
+        <li>
+          <button
+            class="chip"
+            [class.chip--active]="cat() === ''"
+            type="button"
+            [attr.aria-pressed]="cat() === ''"
+            (click)="elegirCategoria('')"
+          >
+            Todas
+          </button>
+        </li>
+        @for (c of categorias; track c.id) {
+          <li>
+            <button
+              class="chip"
+              [class.chip--active]="cat() === c.id"
+              type="button"
+              [attr.aria-pressed]="cat() === c.id"
+              (click)="elegirCategoria(c.id)"
+            >
+              {{ c.nombre }}
+            </button>
+          </li>
+        }
+      </ul>
+      <div class="filters__meta">
+        <div class="sort">
+          <label class="sort__label" for="orden">Ordenar por</label>
+          <select
+            class="input input--select"
+            id="orden"
+            [ngModel]="orden()"
+            (ngModelChange)="cambiarOrden($event)"
+          >
+            <option value="recientes">Más recientes</option>
+            <option value="antiguas">Más antiguas</option>
+            <option value="leidas">Más leídas</option>
+          </select>
+        </div>
+        <p class="filters__count" aria-live="polite">
+          @if (estado() === 'listo') {
+            Mostrando <strong>{{ visibles().length }}</strong> de <strong>{{ total() }}</strong> noticias
+          }
+        </p>
+      </div>
+    </div>
+
+    <!-- Cuadrícula de tarjetas -->
+    <div class="grid">
+      @switch (estado()) {
+        @case ('cargando') {
+          @for (i of [1, 2, 3, 4, 5, 6]; track i) {
+            <app-skeleton-card />
+          }
+        }
+        @case ('error') {
+          <app-empty-state error titulo="No se pudo cargar el listado" (accion)="cargar()" />
+        }
+        @default {
+          @for (noticia of visibles(); track noticia.id; let i = $index) {
+            <app-news-card [carga]="i < 3 ? 'eager' : 'lazy'" [noticia]="noticia" />
+          } @empty {
+            <app-empty-state
+              ilustracion="emptySearch"
+              [titulo]="tituloVacio()"
+              texto="Prueba con otras palabras o revisa los filtros aplicados."
+              botonTexto="Limpiar filtros"
+              botonClase="btn--secondary"
+              (accion)="limpiarFiltros()"
+            />
+          }
+        }
+      }
+    </div>
+
+    <!-- Paginación -->
+    <nav class="pagination" aria-label="Paginación">
+      @if (estado() === 'listo' && total() > 0 && totalPaginas() > 1) {
+        <ul class="pagination__list">
+          <li>
+            <button
+              class="pagination__link"
+              [class.pagination__link--disabled]="pagina() === 1"
+              type="button"
+              [disabled]="pagina() === 1"
+              (click)="irAPagina(pagina() - 1)"
+            >
+              « Anterior
+            </button>
+          </li>
+          @for (n of numerosPagina(); track n) {
+            <li>
+              <button
+                class="pagination__link"
+                [class.pagination__link--active]="n === pagina()"
+                type="button"
+                [attr.aria-current]="n === pagina() ? 'page' : null"
+                (click)="irAPagina(n)"
+              >
+                {{ n }}
+              </button>
+            </li>
+          }
+          <li>
+            <button
+              class="pagination__link"
+              [class.pagination__link--disabled]="pagina() === totalPaginas()"
+              type="button"
+              [disabled]="pagina() === totalPaginas()"
+              (click)="irAPagina(pagina() + 1)"
+            >
+              Siguiente »
+            </button>
+          </li>
+        </ul>
+      }
+    </nav>
+  </div>
+</section>
