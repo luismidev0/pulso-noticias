@@ -10,7 +10,7 @@ Proyecto del módulo **Desarrollo de Front-end** (Politécnico Grancolombiano, g
 
 **Despliegue:** https://luismidev0.github.io/pulso-noticias/
 
-## Funcionalidades
+## Funcionalidades 
 
 | Funcionalidad | Ruta | Implementación |
 |---|---|---|
